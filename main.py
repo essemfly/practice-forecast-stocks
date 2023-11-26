@@ -1,3 +1,4 @@
+from src.drawer import plot_multiple_tickers
 from src.data_loader import load_data_from_csv
 from src.find_similar_tickers import find_similar_tickers
 
@@ -17,8 +18,14 @@ def main():
         if ticker not in tickers:
             print(f"You entered a invalid ticker: {ticker}")
             continue
-        similar_tickers = find_similar_tickers(stock_prices_data, ticker, ANALYZE_DURATION)
+        similar_tickers = find_similar_tickers(
+            stock_prices_data, ticker, ANALYZE_DURATION
+        )
         print(f"Similar tickers to {ticker}:", similar_tickers)
+
+        plot_multiple_tickers(
+            stock_prices_data, ticker, ANALYZE_DURATION, similar_tickers
+        )
 
 
 if __name__ == "__main__":
